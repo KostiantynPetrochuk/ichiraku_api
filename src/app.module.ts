@@ -2,15 +2,21 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { MongooseModule } from "@nestjs/mongoose";
+import { getMongoConfig } from "./configs/mongo.config";
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerModule } from './logger/logger.module';
 import { LoggerMiddleware } from './logger.middleware';
+import { DishModule } from './dish/dish.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: getMongoConfig,
+      inject: [ConfigService],
     }),
     ScheduleModule.forRoot(),
     ThrottlerModule.forRoot([
@@ -31,6 +37,7 @@ import { LoggerMiddleware } from './logger.middleware';
       },
     ]),
     LoggerModule,
+    DishModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -19,7 +19,6 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
   // app.useLogger(app.get(LoggerService));
   app.enableCors();
-  // app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
 
   const port = process.env.PORT || 3000;
