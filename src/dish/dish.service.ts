@@ -11,4 +11,12 @@ export class DishService {
   async create(dto: CreateDishDto): Promise<Dish> {
     return this.dishModel.create(dto);
   }
+
+  async getBySlug(slug: string) {
+    return this.dishModel.findOne({ slug });
+  }
+
+  async getByCategory(category: string) {
+    return this.dishModel.find({ category });
+  }
 }
