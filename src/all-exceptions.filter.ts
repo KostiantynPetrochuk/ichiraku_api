@@ -38,13 +38,13 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
       response.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
       response.response = 'Internal Server Error';
     }
-    if (
-      response.statusCode === HttpStatus.NOT_FOUND &&
-      !request.url.startsWith('/api')
-    ) {
-      reply.status(302).header('Location', '/').send();
-      return;
-    }
+    // if (
+    //   response.statusCode === HttpStatus.NOT_FOUND &&
+    //   !request.url.startsWith('/api')
+    // ) {
+    //   reply.status(302).header('Location', '/').send();
+    //   return;
+    // }
 
     reply.status(response.statusCode).send(response);
 

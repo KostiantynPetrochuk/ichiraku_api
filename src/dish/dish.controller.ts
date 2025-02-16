@@ -20,4 +20,9 @@ export class DishController {
   async getByCategory(@Param('category') category: string) {
     return this.dishService.getByCategory(category);
   }
+
+  @Get('home')
+  async getForHomePage() {
+    return this.dishService.getForHomepage();
+  }
 }

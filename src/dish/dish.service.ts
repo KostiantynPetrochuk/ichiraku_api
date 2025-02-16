@@ -19,4 +19,19 @@ export class DishService {
   async getByCategory(category: string) {
     return this.dishModel.find({ category });
   }
+
+  async getForHomepage() {
+    const allCategories = await this.dishModel.distinct('category');
+    const categories = allCategories.filter(
+      (category) => category !== 'sauce' && category !== 'drink',
+    );
+    const dishPromises = categories.map((category) =>
+      this.dishModel.find({ category }).limit(4).exec(),
+    );
+    const dishesByCategory = await Promise.all(dishPromises);
+    return categories.reduce((acc, category, index) => {
+      acc[category] = dishesByCategory[index];
+      return acc;
+    }, {});
+  }
 }
