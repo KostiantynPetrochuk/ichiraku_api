@@ -19,8 +19,6 @@ export class CreateDishDto {
   weight: number;
   @IsNumber()
   price: number;
-  @IsBoolean()
-  isNovelty: boolean;
   @IsArray()
   @IsString({ each: true })
   @IsOptional()

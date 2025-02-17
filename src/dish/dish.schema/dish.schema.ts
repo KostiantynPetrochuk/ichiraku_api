@@ -16,8 +16,6 @@ export class Dish {
   @Prop()
   price: number;
   @Prop()
-  isNovelty: boolean;
-  @Prop()
   category: string;
   @Prop({ type: [String], default: [] })
   ingredients: string[];
