@@ -18,7 +18,11 @@ async function bootstrap() {
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
   // app.useLogger(app.get(LoggerService));
-  app.enableCors();
+  app.enableCors({
+    origin: process.env.WEB_APP_URL,
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
   app.useGlobalPipes(new ValidationPipe());
 
   const port = process.env.PORT || 3000;

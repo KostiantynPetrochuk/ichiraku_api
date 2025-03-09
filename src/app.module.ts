@@ -9,6 +9,8 @@ import { AppService } from './app.service';
 import { LoggerModule } from './logger/logger.module';
 import { LoggerMiddleware } from './logger.middleware';
 import { DishModule } from './dish/dish.module';
+import { OrderModule } from './order/order.module';
+import { ClientModule } from './client/client.module';
 
 @Module({
   imports: [
@@ -38,6 +40,8 @@ import { DishModule } from './dish/dish.module';
     ]),
     LoggerModule,
     DishModule,
+    OrderModule,
+    ClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],

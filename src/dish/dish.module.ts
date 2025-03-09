@@ -10,5 +10,6 @@ import { Dish, DishSchema } from './dish.schema/dish.schema';
   ],
   controllers: [DishController],
   providers: [DishService],
+  exports: [DishService],
 })
 export class DishModule {}

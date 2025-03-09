@@ -7,16 +7,22 @@ export type DishDocument = HydratedDocument<Dish>;
 export class Dish {
   @Prop()
   name: string;
+
   @Prop()
   slug: string;
+
   @Prop()
   imagePath: string;
+
   @Prop()
   weight: number;
+
   @Prop()
   price: number;
+
   @Prop()
   category: string;
+
   @Prop({ type: [String], default: [] })
   ingredients: string[];
 }

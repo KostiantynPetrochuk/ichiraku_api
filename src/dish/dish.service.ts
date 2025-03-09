@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { Dish, DishDocument } from './dish.schema/dish.schema';
 import { CreateDishDto } from './dto/create-dish.dto';
 
@@ -18,6 +18,12 @@ export class DishService {
 
   async getByCategory(category: string) {
     return this.dishModel.find({ category });
+  }
+
+  async getByIds(ids: string[]) {
+    return this.dishModel.find({
+      _id: { $in: ids },
+    });
   }
 
   async getForHomepage() {
